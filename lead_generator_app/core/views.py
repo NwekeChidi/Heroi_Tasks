@@ -52,7 +52,7 @@ def new_generator(title, industry, location):
     
     print("Scraping Results\n.....")
     idx = 1
-    for page in range(2, 3):
+    for page in range(2, 11):
         wait_for_element_ready(By.CLASS_NAME, 'g')
         wait()
         elements = driver.find_elements_by_class_name('g')
@@ -63,7 +63,7 @@ def new_generator(title, industry, location):
                 "S/N"    : idx,
                 "Name"   : head_details.split("-")[0].strip(),
                 "Title"  : head_details.split("-")[1].strip(" .(:'") if len(head_details.split("-")) > 1 else "NaN",
-                "Email"  : details[details.lower().find("email")+5:details.find("gmail.com")+1].strip(" .(:'") if "email" in details.lower() else "NaN",
+                "Email"  : details[details.lower().find("email")+5:details.find("gmail.com")+9].strip(" .(:'") if "email" in details.lower() else "NaN",
                 "Address": details.split(".")[0].strip(" .(:'") if "." in details else "NaN",
                 "Phone"  : details[details.find("phone"):].split(" ")[0].strip(" .(:'") if "phone" in details.lower() else "NaN",
                 "Company": head_details.split("-")[2].strip() if len(head_details.split("-")) > 2 else "NaN",
